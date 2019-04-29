@@ -116,8 +116,8 @@ public class NioServer {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
         NioServer nioServer = new NioServer();
-
+        nioServer.start();
     }
 }
