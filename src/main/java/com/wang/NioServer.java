@@ -89,10 +89,12 @@ public class NioServer {
         socketChannel.write(Charset.forName("UTF-8").encode("你和聊天室的人员都不是朋友关系，请注意隐私！"));
     }
 
+
+
     /**
      * 可读事件处理器
      */
-    private void readHandler(SelectionKey selectionKey,Selector selector) throws IOException{
+    private void readHandler(SelectionKey selectionKey, Selector selector) throws IOException{
         //要从selectionKey中获取到已经就绪的channel
         SocketChannel socketChannel = (SocketChannel) selectionKey.channel();
 
@@ -111,7 +113,6 @@ public class NioServer {
         socketChannel.register(selector,SelectionKey.OP_READ);
         //将客户端发送的请求信息 广播给其他客户端
         if(request.length() > 0){
-            //广播给其他客户端
             System.out.println(":: "+request);
         }
     }

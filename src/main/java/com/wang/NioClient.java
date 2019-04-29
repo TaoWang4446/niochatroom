@@ -2,6 +2,8 @@ package com.wang;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.nio.charset.Charset;
 import java.util.Scanner;
@@ -23,6 +25,14 @@ public class NioClient {
             }
         }
         // 接收服务器响应
+
+        // 新开线程，专门负责来接收服务器端的响应
+
+        Selector selector = Selector.open();
+        socketChannel.configureBlocking(false);
+       // selector  socketChannel , 注册
+        socketChannel.register(selector, SelectionKey.OP_READ);
+        new Thread(new NioClientHandler(selector)).start();
     }
 
     public static void main(String[] args) throws IOException{
