@@ -1,4 +1,4 @@
-package com.wang;
+package com.wang.demo;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
